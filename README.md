@@ -1,14 +1,90 @@
+Tropo WebAPI Node.js Library
+============================
+
 A [Node.js](http://nodejs.org/ "Node.js") module for the [Tropo WebAPI](https://www.tropo.com/docs/webapi/ "Tropo WebAPI"). 
 
-Sample usage:
+Installation
+============
+
+To get started you will first need to have Node.js installed. Howtonode has a good write-up on [installing Node.js on Windows, Ubuntu and OSX](http://howtonode.org/how-to-install-nodejs "Installing Node.js"). Next you will then want to create a directory for your project, you may want to use a convention like this:
 
 <pre>
-require('../lib/tropo-webapi');
-var sys = require('sys');
+	./project
+	|-lib
+	|-public
+	|--css
+	|--js
+	|-vendor
+</pre>
 
-var tropo = new TropoWebAPI();
+Next copy the tropo-webapi-node/lib/tropo-webapi.js & tropo-webapi-node/lib/base.js in the project/lib directory. Then you may create a server.js file in the project directory that requires the Tropo WebAPI Node library as follows:
 
-tropo.say("Hello, World.");
+<pre>
+	require('../lib/tropo-webapi');
+</pre>
 
-sys.puts(TropoJSON(tropo));
+Running
+-------
+
+You may then run your script from within the project directory with:
+
+<pre>
+	node server.js
+</pre>
+
+Sample Usage
+============
+
+Generate a JSON Doc
+-------------------
+
+<pre>
+	require('../lib/tropo-webapi');
+	var sys = require('sys');
+
+	var tropo = new TropoWebAPI();
+
+	tropo.say("Hello, World.");
+
+	sys.puts(TropoJSON(tropo));
+</pre>
+
+Respond to a Tropo WebAPI Session
+---------------------------------
+
+<pre>
+	/**
+	* A very simple node web server that will respond to requests
+	* with the Tropo WebAPI JSON version of "Hello, World!" 
+	*/
+
+	var http = require('http');
+	require('../lib/tropo-webapi');
+
+	var server = http.createServer(function (request, response) {
+
+		// Create a new instance of the TropoWebAPI object.
+		var tropo = new TropoWebAPI();
+		tropo.say("Hello, World!");
+
+		// Render out the JSON for Tropo to consume.
+		response.writeHead(200, {'Content-Type': 'application/json'});
+		response.end(TropoJSON(tropo));
+
+	}).listen(8000); // Listen on port 8000 for requests.
+</pre>
+
+Samples
+=======
+
+You may run the included samples from within the tropo-webapi-node directory as follows:
+
+<pre>
+	node samples/hello-word-http.js
+</pre>
+
+We have also included several examples for the [Express.js](http://expressjs.com/ "Express.js") Node framework. This may be run from within the tropo-webapi-node library as follows:
+
+<pre>
+	node samples/express/hello-world.js
 </pre>
