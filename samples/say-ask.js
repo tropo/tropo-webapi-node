@@ -18,7 +18,7 @@ var server = http.createServer(function (request, response) {
 	
 	// Action classes can be passes as parameters to TropoWebAPI class methods.
 	tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
-	tropo.on(new On("continue", null, "http://somefakehost.com:8000/", true));
+	tropo.on("continue", null, "http://somefakehost.com:8000/", true);
 	
 	// Render out the JSON for Tropo to consume.
 	response.writeHead(200, {'Content-Type': 'application/json'}); 
