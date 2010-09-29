@@ -1,6 +1,7 @@
 /**
-* A very simple node web server that demonstrates how to use
-* the Tropo Result object.
+* A simple application showing how to use simple routing logic.<b> 
+* A more simplistic version of what can be accomplised with frameworks 
+* like Express.
 */
 
 
