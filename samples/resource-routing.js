@@ -8,13 +8,6 @@
 var http = require('http');
 var tropo = require('../lib/tropo-webapi');
 
-var host = "somefakehost.com";
-var port = 8000;
-
-function buildUrl(path) {
-	return 'http://' + host + ':' + port + '/' + path;
-}
-
 var server = http.createServer(function (request, response) {  
   
   // Reject the request if not POST
@@ -52,7 +45,7 @@ var server = http.createServer(function (request, response) {
 		
 			// Action classes can be passes as parameters to TropoWebAPI class methods.
 			tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
-			tropo.on("continue", null, buildUrl('answer'), true);
+			tropo.on("continue", null, '/answer', true);
 			
 	    }
 	    
@@ -73,4 +66,4 @@ var server = http.createServer(function (request, response) {
 	  })  
   }  
 
-}).listen(port, host);
+}).listen(8000);
