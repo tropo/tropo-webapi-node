@@ -1,8 +1,6 @@
-A Node.js module for the Tropo WebAPI (https://www.tropo.com/docs/webapi/). 
+A [Node.js](http://nodejs.org/ "Node.js") module for the [Tropo WebAPI](https://www.tropo.com/docs/webapi/ "Tropo WebAPI"). 
 
-Very early yet, still lots of work to do.
-
-Sample useage:
+Sample usage:
 
 <pre>
 require('../lib/tropo-webapi');
