@@ -9,6 +9,9 @@ var tropo = require('../lib/tropo-webapi');
 
 var server = http.createServer(function (request, response) {  
 
+  // Get the pathname for the current request.
+  var pathname = require('url').parse(request.url).pathname;
+  
   // Add a listener for the data event (incoming data from the HTTP request)
   request.addListener('data', function(data){
     json = data.toString();
@@ -16,20 +19,33 @@ var server = http.createServer(function (request, response) {
     
   // Add a listener for the EOF event on the incoming stream.
   request.addListener('end', function() {
+  
+  	 // Create a new instance of the TropoWebAPI object.
+	 var tropo = new TropoWebAPI();
       
-    // Create a new instance of the Session object and give it the JSON delivered from Tropo.
-    var result = Result(json);
-    
-    // Create a new instance of the TropoWebAPI object.
-    var tropo = new TropoWebAPI();
-    
-    // Build the response.
-    tropo.say("Your select was, " +  result.interpretation);
-    tropo.hangup();
-    
-    // Render out the JSON for Tropo to consume.
-    response.writeHead(200, {'Content-Type': 'application/json'});   
-    response.end(TropoJSON(tropo));
+     // The path for the first step in the application flow (ask the caller for input). 
+     if(pathname == '/') {
+     
+     	var say = new Say("Please enter a number one through 5.");
+		var choices = new Choices("1,2,3,4,5");
+		tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
+		tropo.on("continue", null, '/selection', true);
+		response.writeHead(200, {'Content-Type': 'application/json'});   
+	    response.end(TropoJSON(tropo));
+     
+     }
+     
+     // The second step in the application flow - input is submitted via Result JSON delivered from Tropo.
+     if(pathname == '/selection') {
+     
+     	// Create a new instance of the Result object and give it the JSON delivered from Tropo.
+    	var result = Result(json);
+	    tropo.say("Your selection was, " +  result.interpretation + ". Goodbye.");
+	    tropo.hangup();
+	    response.writeHead(200, {'Content-Type': 'application/json'});   
+	    response.end(TropoJSON(tropo));
+     
+     }
 
   })  
 

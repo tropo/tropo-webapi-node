@@ -24,8 +24,9 @@ var server = http.createServer(function (request, response) {
     // Create a new instance of the TropoWebAPI object.
     var tropo = new TropoWebAPI();
     
-    // Build the response.
-    tropo.say("Your account ID is, " + accountId);
+    // Build the response with the userType property of the session object.
+    tropo.say("Your user type is, " + session.userType);
+    tropo.say('Goodbye.');
     tropo.hangup();
     
     // Render out the JSON for Tropo to consume.
