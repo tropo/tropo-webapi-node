@@ -6,7 +6,20 @@ A [Node.js](http://nodejs.org/ "Node.js") module for the [Tropo WebAPI](https://
 Installation
 ============
 
-To get started you will first need to have Node.js installed. Howtonode has a good write-up on [installing Node.js on Windows, Ubuntu and OSX](http://howtonode.org/how-to-install-nodejs "Installing Node.js"). Next you will then want to create a directory for your project, you may want to use a convention like this:
+To get started you will first need to have Node.js installed. Howtonode has a good write-up on [installing Node.js on Windows, Ubuntu and OSX](http://howtonode.org/how-to-install-nodejs "Installing Node.js"). 
+
+
+If you have Node.js installed, and are using the Node Package Manager (npm), just do:
+
+~$ npm install tropo-webapi
+
+If you install with npm, then you can reference the tropo Node library in your node.js scripts like this:
+
+<pre>
+require('tropo-webapi');
+</pre>
+
+If you do not have npm installed, then you will then want to create a directory for your project, you may want to use a convention like this:
 
 <pre>
 	./project
@@ -39,7 +52,7 @@ Generate a JSON Doc
 -------------------
 
 <pre>
-	require('../lib/tropo-webapi');
+	require('tropo-webapi');
 	var sys = require('sys');
 
 	var tropo = new TropoWebAPI();
@@ -59,7 +72,7 @@ Respond to a Tropo WebAPI Session
 	*/
 
 	var http = require('http');
-	require('../lib/tropo-webapi');
+	require('tropo-webapi');
 
 	var server = http.createServer(function (request, response) {
 
