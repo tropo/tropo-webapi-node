@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "homepage": "http://tropo.com",
   "author": "Mark Headd <mheadd@voxeo.com> (http://voiceingov.org)",
-  "main": "lib/tropo-webapi",
+  "main": "./lib/tropo-webapi",
   "directories": {
     "lib": "tropo-webapi-node/lib"
+    "samples": "tropo-webapi-node/samples"
+    "tests": "tropo-webapi-node/tests"
   },
   "engines": {
     "node": "> 0.1.9"
