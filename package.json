@@ -1,0 +1,14 @@
+{
+  "name": "tropo-webapi-node",
+  "description": "A Node.js library for building multi-channel communication apps with the Tropo WebAPI.",
+  "version": "1.0.0",
+  "homepage": "http://tropo.com",
+  "author": "Mark Headd <mheadd@voxeo.com> (http://voiceingov.org)",
+  "main": "lib/tropo-webapi",
+  "directories": {
+    "lib": "tropo-webapi-node/lib"
+  },
+  "engines": {
+    "node": "> 0.1.9"
+  }
+}
