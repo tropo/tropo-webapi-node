@@ -3,7 +3,7 @@
  * Express must be installed for this sample to work
  */
 
-require('../../lib/tropo-webapi');
+var tropowebapi = require('tropo-webapi');
 var express = require('express');
 var app = express.createServer();
 
@@ -17,7 +17,7 @@ app.configure(function(){
 
 app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
-	var tropo = new TropoWebAPI();
+	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
 	tropo.say("Welcome to my Tropo Web API node demo.");
 
@@ -31,15 +31,15 @@ app.post('/', function(req, res){
 	// use the on method https://www.tropo.com/docs/webapi/on.htm
 	tropo.on("continue", null, "/answer", true);
 	
-    res.send(TropoJSON(tropo));
+    res.send(tropowebapi.TropoJSON(tropo));
 });
 
 app.post('/answer', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
-	var tropo = new TropoWebAPI();
+	var tropo = new tropowebapi.TropoWebAPI();
 	tropo.say("Your zip code is " + req.body['result']['actions']['interpretation']);
 	
-	res.send(TropoJSON(tropo));
+	res.send(tropowebapi.TropoJSON(tropo));
 });
 
 app.listen(8000);

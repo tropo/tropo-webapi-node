@@ -6,14 +6,14 @@
  * 
  */
 
-require('../../lib/tropo-provisioning');
+var tropowebapi = require('tropo-webapi');
 var sys = require('sys');
 
 var userid = '';
 var password = '';
 var applicationID = '';
 
-var p = new TropoProvision(userid, password);
+var p = new tropowebapi.TropoProvision(userid, password);
 
 p.updateApplicationAddress(applicationID, 'number', '1407', null, null, null, null, null, null, null);
 

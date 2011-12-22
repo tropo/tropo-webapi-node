@@ -6,7 +6,7 @@
 
 
 var http = require('http');
-var tropo = require('../lib/tropo-webapi');
+var tropowebapi = require('tropo-webapi');
 
 var server = http.createServer(function (request, response) {  
   
@@ -30,7 +30,7 @@ var server = http.createServer(function (request, response) {
 	  request.addListener('end', function() {
 	    
 	    // Create a new instance of the TropoWebAPI object.
-	    var tropo = new TropoWebAPI();
+	    var tropo = new tropowebapi.TropoWebAPI();
 	
 	    if(pathname == '/') {
 	    
@@ -61,7 +61,7 @@ var server = http.createServer(function (request, response) {
 	  
 	    // Render out the JSON for Tropo to consume.
 	    response.writeHead(200, {'Content-Type': 'application/json'});   
-	    response.end(TropoJSON(tropo));
+	    response.end(tropowebapi.TropoJSON(tropo));
 	
 	  })  
   }  
