@@ -5,7 +5,7 @@
 
 var sys = require('sys');
 var http = require('http');
-var tropo = require('../lib/tropo-webapi');
+var tropowebapi = require('tropo-webapi');
 
 var server = http.createServer(function (request, response) {  
   
@@ -23,7 +23,7 @@ var server = http.createServer(function (request, response) {
 	    var session = Session(json);
 	    
 	    // Create a new instance of the TropoWebAPI object.
-	    var tropo = new TropoWebAPI();
+	    var tropo = new tropowebapi.TropoWebAPI(); 
 	    
 	    // Build the response with the userType property of the session object.
 	    tropo.say("Your user type is, " + session.userType);
@@ -32,7 +32,7 @@ var server = http.createServer(function (request, response) {
 	    
 	    // Render out the JSON for Tropo to consume.
 	    response.writeHead(200, {'Content-Type': 'application/json'});   
-	    response.end(TropoJSON(tropo));
+	    response.end(tropowebapi.TropoJSON(tropo));
     
     }
     
