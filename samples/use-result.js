@@ -5,7 +5,7 @@
 
 
 var http = require('http');
-var tropo = require('../lib/tropo-webapi');
+var tropowebapi = require('tropo-webapi');
 
 var server = http.createServer(function (request, response) {  
 
@@ -23,7 +23,7 @@ var server = http.createServer(function (request, response) {
   	 try {
   	 	
   	 	 // Create a new instance of the TropoWebAPI object.
-		 var tropo = new TropoWebAPI();
+		 var tropo = new tropowebapi.TropoWebAPI(); 
 	      
 	     // The path for the first step in the application flow (ask the caller for input). 
 	     if(pathname == '/') {
@@ -33,7 +33,7 @@ var server = http.createServer(function (request, response) {
 			tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
 			tropo.on("continue", null, '/selection', true);
 			response.writeHead(200, {'Content-Type': 'application/json'});   
-		    response.end(TropoJSON(tropo));
+		    response.end(tropowebapi.TropoJSON(tropo));
 	     
 	     }
 	     
@@ -45,7 +45,7 @@ var server = http.createServer(function (request, response) {
 		    tropo.say("Your selection was, " +  result.interpretation + ". Goodbye.");
 		    tropo.hangup();
 		    response.writeHead(200, {'Content-Type': 'application/json'});   
-		    response.end(TropoJSON(tropo));
+		    response.end(tropowebapi.TropoJSON(tropo));
 	     
 	     }
   	 }

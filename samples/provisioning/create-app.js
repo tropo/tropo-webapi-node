@@ -7,7 +7,7 @@
  * 
  */
 
-require('../../lib/tropo-provisioning');
+var tropowebapi = require('tropo-webapi');
 var sys = require('sys');
 
 var userid = '';
@@ -18,7 +18,7 @@ var messagingURL = 'http://somefakehost.com/tropo/app.json';
 var platform = 'webapi';
 var partition = 'staging';
 
-var p = new TropoProvision(userid, password);
+var p = new tropowebapi.TropoProvision(userid, password);
 
 p.createApplication(name, voiceURL, messagingURL, platform, partition);
 

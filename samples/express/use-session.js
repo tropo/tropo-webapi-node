@@ -3,7 +3,7 @@
  * Express must be installed for this sample to work
  */
 
-require('../../lib/tropo-webapi');
+var tropowebapi = require('tropo-webapi');
 var express = require('express');
 var app = express.createServer();
 
@@ -19,12 +19,12 @@ app.post('/', function(req, res){
 	console.log(req.body)
 	
 	// Create a new instance of the TropoWebAPI object.
-	var tropo = new TropoWebAPI();
+	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
 	tropo.say("You are a " + req.body['session']['userType']);
 	tropo.say("Did you not know that already? Goodbye.")
 	
-    res.send(TropoJSON(tropo));
+    res.send(tropowebapi.TropoJSON(tropo));
 });
 
 

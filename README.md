@@ -11,7 +11,7 @@ To get started you will first need to have Node.js installed. Howtonode has a go
 
 If you have Node.js installed, and are using the Node Package Manager (npm), just do:
 
-~$ npm install tropo-webapi
+~$ npm install tropo-webapi -g
 
 If you install with npm, then you can reference the tropo Node library in your node.js scripts like this:
 
@@ -30,10 +30,10 @@ If you do not have npm installed, then you will then want to create a directory 
 	|-vendor
 </pre>
 
-Next copy the tropo-webapi-node/lib/tropo-webapi.js & tropo-webapi-node/lib/base.js in the project/lib directory. Then you may create a server.js file in the project directory that requires the Tropo WebAPI Node library as follows:
+Add this declaration to your server.js starting file
 
 <pre>
-	require('../lib/tropo-webapi');
+	var tropowebapi = require('tropo-webapi');
 </pre>
 
 Running
@@ -52,14 +52,14 @@ Generate a JSON Doc
 -------------------
 
 <pre>
-	require('tropo-webapi');
+	var tropowebapi = require('tropo-webapi');
 	var sys = require('sys');
 
-	var tropo = new TropoWebAPI();
+	var tropo = new tropowebapi.TropoWebAPI(); 
 
 	tropo.say("Hello, World.");
 
-	sys.puts(TropoJSON(tropo));
+	sys.puts(tropowebapi.TropoJSON(tropo));
 </pre>
 
 Respond to a Tropo WebAPI Session
@@ -72,17 +72,17 @@ Respond to a Tropo WebAPI Session
 	*/
 
 	var http = require('http');
-	require('tropo-webapi');
+	var tropowebapi = require('tropo-webapi');
 
 	var server = http.createServer(function (request, response) {
 
 		// Create a new instance of the TropoWebAPI object.
-		var tropo = new TropoWebAPI();
+		var tropo = new tropowebapi.TropoWebAPI(); 
 		tropo.say("Hello, World!");
 
 		// Render out the JSON for Tropo to consume.
 		response.writeHead(200, {'Content-Type': 'application/json'});
-		response.end(TropoJSON(tropo));
+		response.end(tropowebapi.TropoJSON(tropo));
 
 	}).listen(8000); // Listen on port 8000 for requests.
 </pre>
