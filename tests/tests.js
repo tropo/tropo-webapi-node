@@ -6,7 +6,7 @@
 
 require('../lib/tropo-webapi');
 var assert = require('assert');
-var sys = require('sys');
+var util = require('util');
 
 var sayExpected = '{"tropo":[{ "say":{"value":"Hello, World.","required":true,"voice":"carmen"}}]}';
 var askExpected = '{"tropo":[{ "ask":{"choices":{"value":"[5 DIGITS]"},"bargein":true,"name":"foo","required":true,"say":{"value":"Please say your account number."},"timeout":30}}]}';
@@ -19,20 +19,20 @@ var recordExpected = '{"tropo":[{ "record":{"beep":true,"choices":{"value":"[5 D
 var numTests = 0;
 var numFailed = 0;
 
-sys.puts('***** Starting Test Run ************');
-sys.puts(' ');
-sys.puts('Say Test: ' + sayTest(sayExpected));
-sys.puts('Ask Test: ' + askTest(askExpected));
-sys.puts('Call Test: ' + callTest(callExpected));
-sys.puts('Conference Test: ' + conferenceTest(conferenceExpected));
-sys.puts('Hangup Test: ' + hangupTest(hangupExpected));
-sys.puts('Message Test: ' + messageTest(messageExpected));
-sys.puts('Record Test: ' + recordTest(recordExpected));
-sys.puts('');
-sys.puts('Total Tests Run: ' + numTests);
-sys.puts('Total Failed: ' + numFailed);
-sys.puts(' ');
-sys.puts('***** Test Run Complete ************');
+util.puts('***** Starting Test Run ************');
+util.puts(' ');
+util.puts('Say Test: ' + sayTest(sayExpected));
+util.puts('Ask Test: ' + askTest(askExpected));
+util.puts('Call Test: ' + callTest(callExpected));
+util.puts('Conference Test: ' + conferenceTest(conferenceExpected));
+util.puts('Hangup Test: ' + hangupTest(hangupExpected));
+util.puts('Message Test: ' + messageTest(messageExpected));
+util.puts('Record Test: ' + recordTest(recordExpected));
+util.puts('');
+util.puts('Total Tests Run: ' + numTests);
+util.puts('Total Failed: ' + numFailed);
+util.puts(' ');
+util.puts('***** Test Run Complete ************');
 
 // A test for the Tropo Say object. 
 function sayTest(expected) {
