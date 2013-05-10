@@ -4,7 +4,7 @@
  * ~$ node tropo-webapi-node/tests/tests.js
  */
 
-require('../lib/tropo-webapi');
+var Tropo = require('../lib/tropo-webapi');
 var assert = require('assert');
 var util = require('util');
 
@@ -37,64 +37,64 @@ util.puts('***** Test Run Complete ************');
 // A test for the Tropo Say object. 
 function sayTest(expected) {
 
-	var tropo = new TropoWebAPI();
-	tropo.say("Hello, World.", null, null, true, "carmen");
-	return runTest(TropoJSON(tropo), expected);
+	var tropo = new Tropo.TropoWebAPI();
+	tropo.say("Hello, World.", null, null, null, true, "carmen");
+	return runTest(Tropo.TropoJSON(tropo), expected);
 	
 }
 
 // A test for the Tropo Ask object.
 function askTest(expected) {
 
-	var tropo = new TropoWebAPI();
-	var say = new Say("Please say your account number.");
-	var choices = new Choices("[5 DIGITS]");
+	var tropo = new Tropo.TropoWebAPI();
+	var say = new Tropo.Say("Please say your account number.");
+	var choices = new Tropo.Choices("[5 DIGITS]");
 	tropo.ask(choices, null, true, null, "foo", null, true, say, 30, null);
-	return runTest(TropoJSON(tropo), expected);
+	return runTest(Tropo.TropoJSON(tropo), expected);
 }
 
 // A test for the Tropo Call object.
 function callTest(expected) {
 	
-	var tropo = new TropoWebAPI();
+	var tropo = new Tropo.TropoWebAPI();
 	tropo.call("3055195825");
-	return runTest(TropoJSON(tropo), expected);
+	return runTest(Tropo.TropoJSON(tropo), expected);
 }
 
 // A test for the Tropo Conference object.
 function conferenceTest(expected) {
 	
-	var tropo = new TropoWebAPI();
+	var tropo = new Tropo.TropoWebAPI();
 	tropo.conference(1234, false, "foo", false, null, "#");
-	return runTest(TropoJSON(tropo), expected);
+	return runTest(Tropo.TropoJSON(tropo), expected);
 }
 
 // A test for the Tropo Hangup object.
 function hangupTest(expected) {
 	
-	var tropo = new TropoWebAPI();
+	var tropo = new Tropo.TropoWebAPI();
 	tropo.hangup();
-	return runTest(TropoJSON(tropo), expected)
+	return runTest(Tropo.TropoJSON(tropo), expected)
 }
 
 // A test for the Tropo Message object.
 function messageTest(expected) {
 	
-	var tropo = new TropoWebAPI();
-	var say = new Say("This is an announcement");
+	var tropo = new Tropo.TropoWebAPI();
+	var say = new Tropo.Say("This is an announcement");
 	tropo.message(say, "3055195825", false, "TEXT", "3055551212", null, "SMS", null, 10, "kate");
-	return runTest(TropoJSON(tropo), expected)
+	return runTest(Tropo.TropoJSON(tropo), expected)
 	
 }
 
 // A test for the Tropo Record object.
 function recordTest(expected) {
 
-	var tropo = new TropoWebAPI();
-	var say = new Say("Please say your account number");
-	var choices = new Choices("[5 DIGITS]");
+	var tropo = new Tropo.TropoWebAPI();
+	var say = new Tropo.Say("Please say your account number");
+	var choices = new Tropo.Choices("[5 DIGITS]");
 	tropo.record(null, null, true, choices, null, 5, null, "POST", null, "foo", true, say);
-	return runTest(TropoJSON(tropo), expected)
+	return runTest(Tropo.TropoJSON(tropo), expected)
 
 }
 
