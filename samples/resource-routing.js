@@ -20,6 +20,7 @@ var server = http.createServer(function (request, response) {
   
 	  // Get the pathname for the current request.
 	  var pathname = require('url').parse(request.url).pathname;
+      var json = null;
 	
 	  // Add a listener for the data event (incoming data from the HTTP request)
 	  request.addListener('data', function(data){
@@ -35,13 +36,13 @@ var server = http.createServer(function (request, response) {
 	    if(pathname == '/') {
 	    
 	        // Create a new instance of the Session object and give it the JSON delivered from Tropo.
-	    	var session = Session(json);
+	    	var session = tropowebapi.Session(json);
 	    	
 	    	tropo.say("Welcome to my Tropo Web API node demo for " + session.userType + ".");
 	
 			// Demonstrates how to use the base Tropo action classes.
-			var say = new Say("Please enter your 5 digit zip code.");
-			var choices = new Choices("[5 DIGITS]");
+			var say = new tropowebapi.Say("Please enter your 5 digit zip code.");
+			var choices = new tropowebapi.Choices("[5 DIGITS]");
 		
 			// Action classes can be passes as parameters to TropoWebAPI class methods.
 			tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
@@ -52,8 +53,8 @@ var server = http.createServer(function (request, response) {
 	    if(pathname == '/answer') {
 	    
 	        // Create a new instance of the Session object and give it the JSON delivered from Tropo.
-	    	var result = Result(json);
-	    	zip = result.interpretation;    	
+	    	var result = tropowebapi.Result(json);
+	    	var zip = result.interpretation;
 	    	tropo.say("Your zip code is " + zip + ".");
 	    	tropo.hangup();
 	    
