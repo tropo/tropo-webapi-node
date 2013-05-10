@@ -20,7 +20,7 @@ var server = http.createServer(function (request, response) {
     try {
     
     	// Create a new instance of the Session object and give it the JSON delivered from Tropo.
-	    var session = Session(json);
+	    var session = tropowebapi.Session(json);
 	    
 	    // Create a new instance of the TropoWebAPI object.
 	    var tropo = new tropowebapi.TropoWebAPI(); 

@@ -28,8 +28,8 @@ var server = http.createServer(function (request, response) {
 	     // The path for the first step in the application flow (ask the caller for input). 
 	     if(pathname == '/') {
 	     
-	     	var say = new Say("Please enter a number one through 5.");
-			var choices = new Choices("1,2,3,4,5");
+	     	var say = new tropowebapi.Say("Please enter a number one through 5.");
+			var choices = new tropowebapi.Choices("1,2,3,4,5");
 			tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
 			tropo.on("continue", null, '/selection', true);
 			response.writeHead(200, {'Content-Type': 'application/json'});   
@@ -41,7 +41,7 @@ var server = http.createServer(function (request, response) {
 	     if(pathname == '/selection') {
 	     
 	     	// Create a new instance of the Result object and give it the JSON delivered from Tropo.
-	    	var result = Result(json);
+	    	var result = tropowebapi.Result(json);
 		    tropo.say("Your selection was, " +  result.interpretation + ". Goodbye.");
 		    tropo.hangup();
 		    response.writeHead(200, {'Content-Type': 'application/json'});   
