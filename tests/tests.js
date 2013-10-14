@@ -38,7 +38,7 @@ util.puts('***** Test Run Complete ************');
 function sayTest(expected) {
 
 	var tropo = new TropoWebAPI();
-	tropo.say("Hello, World.", null, null, true, "carmen");
+	tropo.say("Hello, World.", null, null, null, true, "carmen", null);
 	return runTest(TropoJSON(tropo), expected);
 	
 }
