@@ -6,9 +6,7 @@
   "author": "Mark Headd <mheadd@voxeo.com> (http://tropo.com)",
   "main": "./lib/tropo-webapi",
   "directories" : { "lib" : "./lib", "samples": "./samples", "tests": "./tests" },
-  "repositories" : [
-    { "type":"git", "url":"https://github.com/tropo/tropo-webapi-node" }
-  ],
+  "repository" : "tropo/tropo-webapi-node",
   "engines": {
     "node": "> 0.6.0"
   }
