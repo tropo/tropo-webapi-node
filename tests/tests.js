@@ -8,7 +8,7 @@ require('../lib/tropo-webapi');
 var assert = require('assert');
 var util = require('util');
 
-var sayExpected = '{"tropo":[{"say":{"value":"Hello, World.","required":true,"voice":"carmen"}}]}';
+var sayExpected = '{"tropo":[{"say":{"value":"Hello, World.","name":"say","required":true,"voice":"carmen"}}]}';
 var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"bargein":true,"name":"foo","required":true,"say":{"value":"Please say your account number."},"timeout":30}}]}';
 var callExpected = '{"tropo":[{"call":{"to":"3055195825"}}]}';
 var conferenceExpected = '{"tropo":[{"conference":{"id":1234,"mute":false,"name":"foo","playTones":false,"terminator":"#"}}]}';
@@ -38,7 +38,7 @@ console.log('***** Test Run Complete ************');
 function sayTest(expected) {
 
 	var tropo = new TropoWebAPI();
-	tropo.say("Hello, World.", null, null, null, true, "carmen", null);
+	tropo.say("Hello, World.", null, null, "say", true, "carmen", null);
 	return runTest(TropoJSON(tropo), expected);
 	
 }

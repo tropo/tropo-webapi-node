@@ -6,13 +6,13 @@
 var tropowebapi = require('tropo-webapi');
 var express = require('express');
 
-var app = express.createServer();
+var app = express();
 
 app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
-	tropo.say("Hello World!");
+	tropo.say("Hello World!", null, null, "say");
 
     res.send(tropowebapi.TropoJSON(tropo));
 });
