@@ -9,7 +9,7 @@ var assert = require('assert');
 var util = require('util');
 
 var sayExpected = '{"tropo":[{"say":{"value":"Hello, World.","name":"say","required":true,"voice":"carmen"}}]}';
-var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"bargein":true,"name":"foo","required":true,"say":{"value":"Please say your account number."},"timeout":30}}]}';
+var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"say":{"value":"Please say your account number."},"bargein":true,"name":"foo","required":true,"timeout":30}}]}';
 var callExpected = '{"tropo":[{"call":{"to":"3055195825","name":"call"}}]}';
 var conferenceExpected = '{"tropo":[{"conference":{"id":1234,"mute":false,"name":"foo","playTones":false,"terminator":"#"}}]}';
 var hangupExpected = '{"tropo":[{"hangup":{}}]}';

@@ -10,7 +10,7 @@ var server = http.createServer(function (request, response) {
 
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Welcome to my Tropo Web API node demo.");
+	tropo.say("Welcome to my Tropo Web API node demo.", null, null, "say");
 	
 	//Create event objects
 	var e1 = {"value":"Sorry, I did not hear anything.","event":"timeout"};
@@ -30,6 +30,6 @@ var server = http.createServer(function (request, response) {
 	
 	// Render out the JSON for Tropo to consume.
 	response.writeHead(200, {'Content-Type': 'application/json'}); 
-	response.send(tropowebapi.TropoJSON(tropo));
+	response.end(tropowebapi.TropoJSON(tropo));
 
 }).listen(8000); // Listen on port 8000 for requests.

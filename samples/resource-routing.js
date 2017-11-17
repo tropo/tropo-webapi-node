@@ -54,7 +54,7 @@ var server = http.createServer(function (request, response) {
 	        // Create a new instance of the Session object and give it the JSON delivered from Tropo.
 	    	var result = Result(json);
 	    	zip = result.interpretation;    	
-	    	tropo.say("Your zip code is " + zip + ".");
+	    	tropo.say("Your zip code is " + zip + ".", null, null, "say");
 	    	tropo.hangup();
 	    
 	    }

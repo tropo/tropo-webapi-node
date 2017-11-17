@@ -10,7 +10,7 @@ var server = http.createServer(function (request, response) {
 
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Welcome to my Tropo Web API node demo.");
+	tropo.say("Welcome to my Tropo Web API node demo.", null, null, "say");
 	
 	// Demonstrates how to use the base Tropo action classes.
 	var say = new Say("Please enter your 5 digit zip code.");
