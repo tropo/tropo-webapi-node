@@ -5,13 +5,13 @@
 
 var tropowebapi = require('tropo-webapi');
 var express = require('express');
-var app = express.createServer();
+var app = express();
 
 app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
-	tropo.say("Welcome to my Tropo Web API node demo.");
+	tropo.say("Welcome to my Tropo Web API node demo.", null, null, "say");
 	// Use the on method https://www.tropo.com/docs/webapi/on.htm
 	tropo.on("continue", null, "/one", true);
 	
@@ -21,7 +21,7 @@ app.post('/', function(req, res){
 app.post('/one', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Hello from resource one!");
+	tropo.say("Hello from resource one!", null, null, "sayone");
 	tropo.on("continue", null, "/two", true);
 	
 	res.send(tropowebapi.TropoJSON(tropo));
@@ -30,8 +30,8 @@ app.post('/one', function(req, res){
 app.post('/two', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Hello from resource two!");
-	tropo.say("Well, enough of that. Goodbye.");
+	tropo.say("Hello from resource two!", null, null, "saytwo");
+	tropo.say("Well, enough of that. Goodbye.", null, null, "saygoodbye");
 	
 	res.send(tropowebapi.TropoJSON(tropo));
 });
