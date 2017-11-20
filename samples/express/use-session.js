@@ -5,15 +5,15 @@
 
 var tropowebapi = require('tropo-webapi');
 var express = require('express');
-var app = express.createServer();
+var app = express();
 
 /**
  * Required to process the HTTP body
  * req.body has the Object while req.rawBody has the JSON string
  */
-app.configure(function(){
-	app.use(express.bodyDecoder());
-});
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.post('/', function(req, res){
 	console.log(req.body)
@@ -21,8 +21,8 @@ app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
-	tropo.say("You are a " + req.body['session']['userType']);
-	tropo.say("Did you not know that already? Goodbye.")
+	tropo.say("You are a " + req.body['session']['userType'], null, null, "say1");
+	tropo.say("Did you not know that already? Goodbye.", null, null, "say2")
 	
     res.send(tropowebapi.TropoJSON(tropo));
 });

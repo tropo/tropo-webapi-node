@@ -3,23 +3,23 @@
  * Express must be installed for this sample to work
  */
 
-var tropowebapi = require('tropo-webapi');
+var tropowebapi = require('lib/tropo-webapi');
 var express = require('express');
-var app = express.createServer();
+var app = express();
 
 /**
  * Required to process the HTTP body
  * req.body has the Object while req.rawBody has the JSON string
  */
-app.configure(function(){
-	app.use(express.bodyDecoder());
-});
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
-	tropo.say("Welcome to my Tropo Web API node demo.");
+	tropo.say("Welcome to my Tropo Web API node demo.", null, null, "say");
 
 	// Demonstrates how to use the base Tropo action classes.
 	var say = new Say("Please enter your 5 digit zip code.");
@@ -37,7 +37,7 @@ app.post('/', function(req, res){
 app.post('/answer', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Your zip code is " + req.body['result']['actions']['interpretation']);
+	tropo.say("Your zip code is " + req.body['result']['actions']['interpretation'], null, null, "say");
 	
 	res.send(tropowebapi.TropoJSON(tropo));
 });

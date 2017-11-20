@@ -9,11 +9,11 @@ var assert = require('assert');
 var util = require('util');
 
 var sayExpected = '{"tropo":[{"say":{"value":"Hello, World.","name":"say","required":true,"voice":"carmen"}}]}';
-var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"bargein":true,"name":"foo","required":true,"say":{"value":"Please say your account number."},"timeout":30}}]}';
-var callExpected = '{"tropo":[{"call":{"to":"3055195825"}}]}';
+var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"say":{"value":"Please say your account number."},"bargein":true,"name":"foo","required":true,"timeout":30}}]}';
+var callExpected = '{"tropo":[{"call":{"to":"3055195825","name":"call"}}]}';
 var conferenceExpected = '{"tropo":[{"conference":{"id":1234,"mute":false,"name":"foo","playTones":false,"terminator":"#"}}]}';
 var hangupExpected = '{"tropo":[{"hangup":{}}]}';
-var messageExpected = '{"tropo":[{"message":{"say":{"value":"This is an announcement"},"to":"3055195825","answerOnMedia":false,"channel":"TEXT","from":"3055551212","network":"SMS","timeout":10,"voice":"kate"}}]}';
+var messageExpected = '{"tropo":[{"message":{"say":{"value":"This is an announcement"},"to":"3055195825","name":"message","answerOnMedia":false,"channel":"TEXT","from":"3055551212","network":"SMS","timeout":10,"voice":"kate"}}]}';
 var recordExpected = '{"tropo":[{"record":{"beep":true,"choices":{"value":"[5 DIGITS]"},"maxSilence":5,"method":"POST","name":"foo","required":true,"say":{"value":"Please say your account number"}}}]}';
 
 var numTests = 0;
@@ -57,7 +57,7 @@ function askTest(expected) {
 function callTest(expected) {
 	
 	var tropo = new TropoWebAPI();
-	tropo.call("3055195825");
+	tropo.call("3055195825", null, null, null, null, 'call');
 	return runTest(TropoJSON(tropo), expected);
 }
 
@@ -82,7 +82,7 @@ function messageTest(expected) {
 	
 	var tropo = new TropoWebAPI();
 	var say = new Say("This is an announcement");
-	tropo.message(say, "3055195825", false, "TEXT", "3055551212", null, "SMS", null, 10, "kate");
+	tropo.message(say, "3055195825", false, "TEXT", "3055551212", 'message', "SMS", null, 10, "kate");
 	return runTest(TropoJSON(tropo), expected);
 	
 }
