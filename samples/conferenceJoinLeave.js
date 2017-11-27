@@ -16,7 +16,7 @@ var server = http.createServer(function (request, response) {
     var join = new JoinPrompt("Please welcome " + callerID + " to the party!", null);
     var leave = new LeavePrompt(callerID + " has just decided to depart.", null);
     
-    tropo.conference("1234", false, null, null, true, null, null, null, join, leave);
+    tropo.conference("1234", false, "conference", null, true, null, null, null, join, leave);
     
     response.end(TropoJSON(tropo));
 });
