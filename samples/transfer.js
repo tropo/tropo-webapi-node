@@ -11,8 +11,8 @@ var server = http.createServer(function (request, response) {
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI(); 
 	
-	tropo.say('Please hold while your call is transferred.');
-	tropo.transfer('mheadd@sip2sip.info', false, null, null, {'x-caller-name' : 'Mark Headd'}, null, null, true, '#', 60.0);
+	tropo.say('Please hold while your call is transferred.', null, null, "say");
+	tropo.transfer('mheadd@sip2sip.info', false, null, null, {'x-caller-name' : 'Mark Headd'}, "transfer", null, true, '#', 60.0);
 	
 	// Render out the JSON for Tropo to consume.
 	response.writeHead(200, {'Content-Type': 'application/json'}); 
