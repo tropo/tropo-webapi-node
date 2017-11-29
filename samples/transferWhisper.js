@@ -1,13 +1,11 @@
 var express = require('express');
-var app = express.createServer();
-var sys = require('sys');
+var app = express();
 var tropowebapi = require('tropo-webapi');
+var bodyParser = require('body-parser')
  
 // Required to process the HTTP body.
 // req.body has the Object while req.rawBody has the JSON string.
-app.configure(function(){
-    app.use(express.bodyParser());
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/', function(req, res) {
 
@@ -29,7 +27,7 @@ app.post('/', function(req, res) {
      whisper[1]= new On("connect", null, null, null, say, null, null, null);
      console.log('5');
        
-    tropo.say("Please hold while you are being transferred");
+    tropo.say("Please hold while you are being transferred", null, null, "say");
     tropo.transfer("+14071234321", null, null, null, null, "foo", whisper, true, "*", null, null, null, null); 
     console.log('6');
     
@@ -46,3 +44,4 @@ app.post('/hangup', function(req, res){
     tropo.hangup();
     res.send(tropowebapi.TropoJSON(tropo));
 });
+app.listen(8000);
