@@ -24,8 +24,8 @@ var server = http.createServer(function (request, response) {
 	    var tropo = new tropowebapi.TropoWebAPI(); 
 	    
 	    // Build the response with the userType property of the session object.
-	    tropo.say("Your user type is, " + session.userType, null, null, "say");
-	    tropo.say('Goodbye.', null, null, "sayGoodbye");
+	    tropo.say("Your user type is, " + session.userType);
+	    tropo.say('Goodbye.');
 	    tropo.hangup();
 	    
 	    // Render out the JSON for Tropo to consume.

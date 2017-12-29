@@ -10,7 +10,7 @@ var server = http.createServer(function (request, response) {
 
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Welcome to my Tropo Web API node demo.", null, null, "say");
+	tropo.say("Welcome to my Tropo Web API node demo.");
 	
 	//Create event objects
 	var e1 = {"value":"Sorry, I did not hear anything.","event":"timeout"};
@@ -21,7 +21,7 @@ var server = http.createServer(function (request, response) {
     var e = new Array(e1,e2,e3);
        
 	// Demonstrates how to use the base Tropo action classes.
-	var say = new Say("Please enter your 5 digit zip code.", null, e, null, null, null);
+	var say = new Say("Please enter your 5 digit zip code.", null, e);
 	var choices = new Choices("[5 DIGITS]");
 	
 	// Action classes can be passes as parameters to TropoWebAPI class methods.

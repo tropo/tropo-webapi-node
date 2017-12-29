@@ -42,7 +42,7 @@ var server = http.createServer(function (request, response) {
 	     
 	     	// Create a new instance of the Result object and give it the JSON delivered from Tropo.
 	    	var result = Result(json);
-		    tropo.say("Your selection was, " +  result.interpretation + ". Goodbye.", null, null, "say");
+		    tropo.say("Your selection was, " +  result.interpretation + ". Goodbye.");
 		    tropo.hangup();
 		    response.writeHead(200, {'Content-Type': 'application/json'});   
 		    response.end(tropowebapi.TropoJSON(tropo));

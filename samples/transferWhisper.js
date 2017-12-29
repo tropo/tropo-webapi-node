@@ -27,12 +27,12 @@ app.post('/', function(req, res) {
      whisper[1]= new On("connect", null, null, null, say, null, null, null);
      console.log('5');
        
-    tropo.say("Please hold while you are being transferred", null, null, "say");
+    tropo.say("Please hold while you are being transferred");
     tropo.transfer("+14071234321", null, null, null, null, "foo", whisper, true, "*", null, null, null, null); 
     console.log('6');
     
     var incompleteSay = new Say("You are now being disconnected");
-    tropo.on("incomplete", null, "/hangup", null, incompleteSay, null, null, null);    
+    tropo.on("incomplete", null, "/hangup", null, incompleteSay);    
 
     
     res.send(tropowebapi.TropoJSON(tropo));

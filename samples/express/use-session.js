@@ -21,8 +21,8 @@ app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
-	tropo.say("You are a " + req.body['session']['userType'], null, null, "say1");
-	tropo.say("Did you not know that already? Goodbye.", null, null, "say2")
+	tropo.say("You are a " + req.body['session']['userType']);
+	tropo.say("Did you not know that already? Goodbye.")
 	
     res.send(tropowebapi.TropoJSON(tropo));
 });

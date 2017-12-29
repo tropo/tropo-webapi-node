@@ -10,7 +10,7 @@ var tropowebapi = require('tropo-webapi');
 var tropo = new tropowebapi.TropoWebAPI();
 
 // Say something and then hangup. (Note, null values are excluded from rendered JSON.)
-tropo.say("Hello, World.", null, null, "say", true, "carmen");
+tropo.say("Hello, World.", null, null, null, true, "carmen");
 tropo.hangup();
 
 // Write out the rendered JSON.

@@ -37,7 +37,7 @@ var server = http.createServer(function (request, response) {
 	        // Create a new instance of the Session object and give it the JSON delivered from Tropo.
 	    	var session = Session(json);
 	    	
-	    	tropo.say("Welcome to my Tropo Web API node demo for " + session.userType + ".", null, null, "say");
+	    	tropo.say("Welcome to my Tropo Web API node demo for " + session.userType + ".");
 	
 			// Demonstrates how to use the base Tropo action classes.
 			var say = new Say("Please enter your 5 digit zip code.");
@@ -54,7 +54,7 @@ var server = http.createServer(function (request, response) {
 	        // Create a new instance of the Session object and give it the JSON delivered from Tropo.
 	    	var result = Result(json);
 	    	zip = result.interpretation;    	
-	    	tropo.say("Your zip code is " + zip + ".", null, null, "say");
+	    	tropo.say("Your zip code is " + zip + ".");
 	    	tropo.hangup();
 	    
 	    }
