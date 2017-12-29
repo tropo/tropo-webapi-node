@@ -19,7 +19,7 @@ app.post('/', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
 	// Use the say method https://www.tropo.com/docs/webapi/say.htm
-	tropo.say("Welcome to my Tropo Web API node demo.", null, null, "say");
+	tropo.say("Welcome to my Tropo Web API node demo.");
 
 	// Demonstrates how to use the base Tropo action classes.
 	var say = new Say("Please enter your 5 digit zip code.");
@@ -37,7 +37,7 @@ app.post('/', function(req, res){
 app.post('/answer', function(req, res){
 	// Create a new instance of the TropoWebAPI object.
 	var tropo = new tropowebapi.TropoWebAPI();
-	tropo.say("Your zip code is " + req.body['result']['actions']['interpretation'], null, null, "say");
+	tropo.say("Your zip code is " + req.body['result']['actions']['interpretation']);
 	
 	res.send(tropowebapi.TropoJSON(tropo));
 });

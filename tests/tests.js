@@ -8,13 +8,13 @@ require('../lib/tropo-webapi');
 var assert = require('assert');
 var util = require('util');
 
-var sayExpected = '{"tropo":[{"say":{"value":"Hello, World.","name":"say","required":true,"voice":"carmen"}}]}';
-var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"say":{"value":"Please say your account number."},"bargein":true,"name":"foo","required":true,"timeout":30}}]}';
-var callExpected = '{"tropo":[{"call":{"to":"3055195825","name":"call"}}]}';
-var conferenceExpected = '{"tropo":[{"conference":{"id":"1234","name":"foo","mute":false,"playTones":false,"terminator":"#"}}]}';
+var sayExpected = '{"tropo":[{"say":{"value":"Hello, World.","required":true,"voice":"carmen"}}]}';
+var askExpected = '{"tropo":[{"ask":{"choices":{"value":"[5 DIGITS]"},"say":{"value":"Please say your account number."},"bargein":true,"required":true,"timeout":30}}]}';
+var callExpected = '{"tropo":[{"call":{"to":"3055195825"}}]}';
+var conferenceExpected = '{"tropo":[{"conference":{"id":"1234","mute":false,"playTones":false,"terminator":"#"}}]}';
 var hangupExpected = '{"tropo":[{"hangup":{}}]}';
-var messageExpected = '{"tropo":[{"message":{"say":{"value":"This is an announcement"},"to":"3055195825","name":"message","answerOnMedia":false,"channel":"TEXT","from":"3055551212","network":"SMS","timeout":10,"voice":"kate"}}]}';
-var recordExpected = '{"tropo":[{"record":{"beep":true,"choices":{"terminator":"#"},"maxSilence":5,"method":"POST","name":"foo","required":true,"say":{"value":"Please say your account number"}}}]}';
+var messageExpected = '{"tropo":[{"message":{"say":{"value":"This is an announcement"},"to":"3055195825","answerOnMedia":false,"channel":"TEXT","from":"3055551212","network":"SMS","timeout":10,"voice":"kate"}}]}';
+var recordExpected = '{"tropo":[{"record":{"beep":true,"choices":{"terminator":"#"},"maxSilence":5,"method":"POST","required":true,"say":{"value":"Please say your account number"}}}]}';
 
 var numTests = 0;
 var numFailed = 0;
@@ -38,7 +38,7 @@ console.log('***** Test Run Complete ************');
 function sayTest(expected) {
 
 	var tropo = new TropoWebAPI();
-	tropo.say("Hello, World.", null, null, "say", true, "carmen", null);
+	tropo.say("Hello, World.", null, null, null, true, "carmen", null);
 	return runTest(TropoJSON(tropo), expected);
 	
 }
@@ -49,7 +49,7 @@ function askTest(expected) {
 	var tropo = new TropoWebAPI();
 	var say = new Say("Please say your account number.");
 	var choices = new Choices("[5 DIGITS]");
-	tropo.ask(choices, null, true, null, "foo", null, true, say, 30, null);
+	tropo.ask(choices, null, true, null, null, null, true, say, 30, null);
 	return runTest(TropoJSON(tropo), expected);
 }
 
@@ -57,7 +57,7 @@ function askTest(expected) {
 function callTest(expected) {
 	
 	var tropo = new TropoWebAPI();
-	tropo.call("3055195825", null, null, null, null, 'call');
+	tropo.call("3055195825");
 	return runTest(TropoJSON(tropo), expected);
 }
 
@@ -65,7 +65,7 @@ function callTest(expected) {
 function conferenceTest(expected) {
 	
 	var tropo = new TropoWebAPI();
-	tropo.conference("1234", false, "foo", false, null, "#");
+	tropo.conference("1234", false, null, false, null, "#");
 	return runTest(TropoJSON(tropo), expected);
 }
 
@@ -82,7 +82,7 @@ function messageTest(expected) {
 	
 	var tropo = new TropoWebAPI();
 	var say = new Say("This is an announcement");
-	tropo.message(say, "3055195825", false, "TEXT", "3055551212", 'message', "SMS", null, 10, "kate");
+	tropo.message(say, "3055195825", false, "TEXT", "3055551212", null, "SMS", null, 10, "kate");
 	return runTest(TropoJSON(tropo), expected);
 	
 }
@@ -93,7 +93,7 @@ function recordTest(expected) {
 	var tropo = new TropoWebAPI();
 	var say = new Say("Please say your account number");
 	var choices = new Choices("[5 DIGITS]", null, "#");
-	tropo.record(null, null, null, true, choices, null, 5, null, "POST", null, "foo", true, say);
+	tropo.record(null, null, null, true, choices, null, 5, null, "POST", null, null, true, say);
 	return runTest(TropoJSON(tropo), expected);
 
 }
