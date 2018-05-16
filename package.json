@@ -1,7 +1,7 @@
 {
   "name": "tropo-webapi",
   "description": "A Node.js library for the Tropo WebAPI.",
-  "version": "15.10.1",
+  "version": "15.11.0",
   "homepage": "http://tropo.com",
   "author": "Mark Headd <mheadd@voxeo.com> (http://tropo.com)",
   "main": "./lib/tropo-webapi",
