@@ -3,6 +3,8 @@
  * Express must be installed for this sample to work
  */
 
+var port = Number(process.env.PORT || 3000);
+
 var tropowebapi = require('tropo-webapi');
 var express = require('express');
 
@@ -18,5 +20,5 @@ app.post('/', function(req, res){
 });
 
 
-app.listen(8000);
-console.log('Server running on http://0.0.0.0:8000/')
+app.listen(port);
+console.log('Server running on: ' + port);
